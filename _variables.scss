@@ -1,0 +1,49 @@
+// === TOKENS ===
+
+// Colors
+$bg-base: #0a0a0b;
+$bg-panel: #111114;
+$bg-card: #18181d;
+$bg-hover: #1e1e26;
+$border: #22222e;
+$border-light: #32323f;
+
+$ink: #e8e4dc;
+$ink-muted: #909099;
+$ink-faint: #7a7a8a;
+
+$accent: #c8a96e;
+$accent-dim: #8a7248;
+$accent-glow: rgba(200, 169, 110, 0.12);
+$accent-glow-lg: rgba(200, 169, 110, 0.06);
+
+$red: #c0392b;
+$green: #27ae60;
+$yellow: #f39c12;
+
+// Typography
+$font-display: "Bebas Neue", sans-serif;
+$font-mono: "Space Mono", monospace;
+$font-body: "DM Sans", sans-serif;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 40px;
+$space-2xl: 64px;
+$space-3xl: 96px;
+
+// Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 14px;
+
+// Transitions
+$transition: 0.18s ease;
+$transition-slow: 0.35s ease;
+
+// Container
+$container-max: 1100px;
+$container-pad: 40px;

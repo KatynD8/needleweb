@@ -1,0 +1,118 @@
+// === NAV ===
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba($bg-base, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color $transition-slow, background $transition-slow;
+
+  &.scrolled {
+    border-bottom-color: $border;
+    background: rgba($bg-base, 0.95);
+  }
+}
+
+.nav-inner {
+  @include container;
+  @include flex(row, center, space-between, $space-xl);
+  height: 68px;
+
+  @include tablet { gap: $space-lg; }
+}
+
+.logo {
+  @include flex(row, center, flex-start, 12px);
+  flex-shrink: 0;
+
+  .logo-hex {
+    font-size: 26px;
+    color: $accent;
+    filter: drop-shadow(0 0 6px rgba($accent, 0.4));
+    line-height: 1;
+  }
+
+  .logo-title {
+    @include display-font(22px, 3px);
+    color: $accent;
+  }
+
+  .logo-sub {
+    @include mono(8px, 2px);
+    color: $ink-faint;
+    margin-top: 1px;
+  }
+}
+
+.nav-links {
+  @include flex(row, center, center, 28px);
+  flex: 1;
+  justify-content: center;
+
+  @include tablet { display: none; }
+
+  a {
+    @include mono(10px, 1.5px);
+    color: $ink-muted;
+    transition: color $transition;
+    text-transform: uppercase;
+
+    &:hover { color: $accent; }
+  }
+}
+
+.btn-nav {
+  @include tablet { display: none; }
+}
+
+.nav-burger {
+  display: none;
+  @include flex(column, center, center, 5px);
+  width: 32px; height: 32px;
+  padding: 4px;
+
+  @include tablet { display: flex; }
+
+  span {
+    display: block;
+    width: 20px; height: 1.5px;
+    background: $ink-muted;
+    border-radius: 1px;
+    transition: all $transition;
+  }
+
+  &.open {
+    span:first-child { transform: rotate(45deg) translate(4px, 4px); }
+    span:last-child  { transform: rotate(-45deg) translate(4px, -4px); }
+  }
+}
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  padding: $space-lg $space-xl;
+  border-top: 1px solid $border;
+  gap: $space-md;
+
+  &.open { display: flex; }
+
+  a {
+    @include mono(11px, 1.5px);
+    color: $ink-muted;
+    padding: $space-sm 0;
+    text-transform: uppercase;
+    transition: color $transition;
+
+    &:hover { color: $accent; }
+  }
+
+  .btn-nav {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: $space-sm;
+  }
+}

@@ -1,0 +1,55 @@
+// === MIXINS ===
+@use 'variables' as v;
+
+@mixin flex($dir: row, $align: center, $justify: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $align;
+  justify-content: $justify;
+  @if $gap != 0 { gap: $gap; }
+}
+
+@mixin mono($size: 10px, $spacing: 2px) {
+  font-family: v.$font-mono;
+  font-size: $size;
+  letter-spacing: $spacing;
+}
+
+@mixin display-font($size: 42px, $spacing: 4px) {
+  font-family: v.$font-display;
+  font-size: $size;
+  letter-spacing: $spacing;
+  line-height: 1;
+}
+
+@mixin container {
+  max-width: v.$container-max;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: v.$container-pad;
+  padding-right: v.$container-pad;
+
+  @media (max-width: 768px) {
+    padding-left: v.$space-lg;
+    padding-right: v.$space-lg;
+  }
+}
+
+@mixin card-base {
+  background: v.$bg-card;
+  border: 1px solid v.$border;
+  border-radius: v.$radius-lg;
+  transition: border-color v.$transition;
+  &:hover { border-color: v.$border-light; }
+}
+
+@mixin reveal-base {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  &.revealed { opacity: 1; transform: translateY(0); }
+}
+
+@mixin mobile  { @media (max-width: 640px)  { @content; } }
+@mixin tablet  { @media (max-width: 900px)  { @content; } }
+@mixin desktop { @media (min-width: 901px)  { @content; } }

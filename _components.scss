@@ -1,0 +1,131 @@
+// === COMPONENTS ===
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// --- Container ---
+.container { @include container; }
+
+// --- Buttons ---
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: 13px 28px;
+  background: $accent;
+  color: $bg-base;
+  border: 1px solid $accent;
+  border-radius: $radius-md;
+  @include mono(11px, 2px);
+  font-weight: 700;
+  transition: all $transition;
+
+  &:hover {
+    background: lighten($accent, 6%);
+    box-shadow: 0 0 28px rgba(200, 169, 110, 0.25);
+    transform: translateY(-1px);
+  }
+
+  &.large { padding: 16px 36px; font-size: 13px; }
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: 13px 24px;
+  background: transparent;
+  color: $ink-muted;
+  border: 1px solid $border-light;
+  border-radius: $radius-md;
+  @include mono(11px, 1.5px);
+  transition: all $transition;
+
+  &:hover {
+    color: $ink;
+    border-color: $accent-dim;
+    background: $accent-glow;
+  }
+}
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 20px;
+  background: $accent;
+  color: $bg-base;
+  border-radius: $radius-md;
+  @include mono(10px, 1.5px);
+  font-weight: 700;
+  transition: all $transition;
+
+  &:hover { background: lighten($accent, 6%); }
+}
+
+// --- Section Header ---
+.section-header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+
+  .section-eyebrow {
+    @include mono(10px, 3px);
+    color: $accent;
+    margin-bottom: $space-md;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    @include display-font(54px, 5px);
+    color: $ink;
+    margin-bottom: $space-md;
+
+    em {
+      color: $accent;
+      font-style: normal;
+    }
+
+    @include tablet { font-size: 40px; }
+    @include mobile { font-size: 32px; }
+  }
+
+  p {
+    font-size: 14px;
+    color: $ink-muted;
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+}
+
+// --- Badge pill ---
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: $accent-glow;
+  border: 1px solid rgba($accent, 0.2);
+  border-radius: 20px;
+  @include mono(9px, 1.5px);
+  color: $accent;
+}
+
+// --- Dot separator ---
+.dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: $accent-dim;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+// --- Check / Dash ---
+.check {
+  color: $accent;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.dash {
+  color: $ink-faint;
+  font-size: 15px;
+}

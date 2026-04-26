@@ -1,0 +1,559 @@
+// === FEATURES ===
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.features {
+  padding: $space-3xl 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border, transparent);
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+
+  @include tablet  { grid-template-columns: repeat(2, 1fr); }
+  @include mobile  { grid-template-columns: 1fr; }
+}
+
+.feature-card {
+  @include card-base;
+  @include reveal-base;
+  padding: $space-xl $space-lg;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, $accent-glow-lg, transparent 70%);
+    pointer-events: none;
+    transition: opacity $transition-slow;
+    opacity: 0;
+  }
+
+  &:hover::after { opacity: 1; }
+
+  .feature-icon {
+    font-size: 22px;
+    color: $accent;
+    margin-bottom: $space-md;
+    display: block;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: $ink;
+    margin-bottom: $space-sm;
+  }
+
+  p {
+    font-size: 13px;
+    color: $ink-muted;
+    line-height: 1.8;
+  }
+}
+
+// Stagger delays
+@for $i from 1 through 6 {
+  .feature-card:nth-child(#{$i}) { transition-delay: #{($i - 1) * 80}ms; }
+}
+
+
+// === PRICING ===
+.pricing {
+  padding: $space-3xl 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border, transparent);
+  }
+}
+
+// Billing toggle
+.billing-toggle-wrap {
+  @include flex(row, center, center, 14px);
+  margin-bottom: $space-2xl;
+  flex-wrap: wrap;
+}
+
+.billing-label {
+  @include mono(10px, 1.5px);
+  color: $ink-faint;
+  text-transform: uppercase;
+  transition: color $transition;
+
+  &.active { color: $ink; }
+}
+
+.billing-toggle {
+  width: 46px; height: 26px;
+  background: $accent;
+  border-radius: 13px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background $transition;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: $bg-base;
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: left $transition;
+  }
+
+  &.annual::after { left: 23px; }
+}
+
+.save-badge {
+  background: rgba($accent, 0.12);
+  color: $accent;
+  border: 1px solid rgba($accent, 0.25);
+  @include mono(9px, 1px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+// Pricing cards
+.pricing-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-lg;
+  max-width: 760px;
+  margin: 0 auto $space-xl;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.pricing-card {
+  @include card-base;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+
+  @include mobile { padding: 28px 24px; }
+
+  &.featured {
+    border-color: $accent-dim;
+    background: darken($bg-card, 1%);
+
+    &::before {
+      content: 'POPULAIRE';
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      @include mono(9px, 2px);
+      color: $bg-base;
+      background: $accent;
+      padding: 5px 16px;
+      border-radius: 0 0 8px 8px;
+      font-weight: 700;
+    }
+  }
+}
+
+.plan-header {
+  margin-bottom: $space-lg;
+
+  .plan-name {
+    @include display-font(30px, 3px);
+    color: $ink;
+    margin-bottom: $space-xs;
+  }
+
+  .plan-tagline {
+    @include mono(9px, 1.5px);
+    color: $ink-faint;
+    text-transform: uppercase;
+  }
+}
+
+.plan-price-wrap {
+  margin-bottom: $space-md;
+}
+
+.plan-price {
+  @include flex(row, baseline, flex-start, 2px);
+  margin-bottom: $space-xs;
+
+  sup {
+    @include display-font(20px, 0);
+    color: $accent;
+    margin-right: 2px;
+  }
+
+  span {
+    @include display-font(58px, 0);
+    color: $accent;
+  }
+
+  em {
+    font-style: normal;
+    font-size: 14px;
+    color: $ink-faint;
+    margin-left: 4px;
+    font-weight: 300;
+  }
+}
+
+.plan-annual-note {
+  @include mono(9px, 1px);
+  color: $ink-faint;
+  text-transform: uppercase;
+  min-height: 16px;
+  transition: all $transition;
+}
+
+.plan-divider {
+  height: 1px;
+  background: $border;
+  margin: $space-lg 0;
+}
+
+.plan-features {
+  @include flex(column, stretch, flex-start, 10px);
+  margin-bottom: $space-xl;
+
+  li {
+    @include flex(row, flex-start, flex-start, 10px);
+    font-size: 13px;
+    color: $ink-muted;
+    line-height: 1.5;
+
+    &::before {
+      content: '';
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: $accent-glow;
+      border: 1px solid rgba($accent, 0.35);
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: radial-gradient(circle, $accent 3px, transparent 3px);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+.btn-plan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 13px;
+  border-radius: $radius-md;
+  @include mono(11px, 2px);
+  font-weight: 700;
+  transition: all $transition;
+  margin-bottom: $space-sm;
+
+  &.ghost {
+    background: transparent;
+    color: $accent;
+    border: 1px solid $accent-dim;
+
+    &:hover {
+      background: $accent-glow;
+      border-color: $accent;
+    }
+  }
+
+  &.solid {
+    background: $accent;
+    color: $bg-base;
+    border: 1px solid $accent;
+
+    &:hover {
+      background: lighten($accent, 6%);
+      box-shadow: 0 4px 24px rgba($accent, 0.25);
+    }
+  }
+}
+
+.plan-note {
+  @include mono(8px, 1px);
+  color: $ink-faint;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pricing-guarantee {
+  @include flex(row, center, center, 12px);
+  @include mono(9px, 2px);
+  color: $ink-faint;
+  text-align: center;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+// === COMPARE ===
+.compare-section {
+  padding: $space-3xl 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border, transparent);
+  }
+}
+
+.compare-table-wrap {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+  border: 1px solid $border;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    @include mono(9px, 2px);
+    color: $ink-faint;
+    padding: 14px 20px;
+    text-align: left;
+    background: $bg-panel;
+    border-bottom: 1px solid $border;
+    text-transform: uppercase;
+
+    &.col-plan { text-align: center; }
+    &.featured  { color: $accent; }
+  }
+
+  td {
+    padding: 13px 20px;
+    font-size: 13px;
+    color: $ink-muted;
+    border-bottom: 1px solid $border;
+    text-align: left;
+
+    &:not(:first-child) { text-align: center; }
+  }
+
+  tbody tr {
+    transition: background $transition;
+    &:hover td { background: rgba($accent, 0.02); }
+    &:last-child td { border-bottom: none; }
+  }
+
+  .row-divider td {
+    padding: 0;
+    height: 1px;
+    background: $border-light;
+  }
+
+  .val-muted  { color: $ink-faint; font-size: 12px; }
+  .val-accent { color: $accent; font-weight: 500; }
+}
+
+
+// === FAQ ===
+.faq-section {
+  padding: $space-3xl 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $border, transparent);
+  }
+}
+
+.faq-list {
+  max-width: 680px;
+  margin: 0 auto;
+  @include flex(column, stretch, flex-start, $space-sm);
+}
+
+.faq-item {
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: border-color $transition;
+
+  &:hover { border-color: $border-light; }
+  &.open   { border-color: $accent-dim; }
+}
+
+.faq-q {
+  @include flex(row, center, space-between, $space-md);
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $ink;
+  text-align: left;
+  background: transparent;
+  transition: color $transition;
+
+  &:hover { color: $accent; }
+
+  .faq-icon {
+    @include mono(16px, 0);
+    color: $accent-dim;
+    flex-shrink: 0;
+    transition: transform $transition;
+    font-style: normal;
+  }
+
+  .faq-item.open & .faq-icon { transform: rotate(45deg); }
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.2s ease;
+
+  .faq-item.open & {
+    max-height: 300px;
+    padding-bottom: 18px;
+  }
+
+  p {
+    font-size: 13px;
+    color: $ink-muted;
+    line-height: 1.8;
+    padding: 0 20px;
+  }
+}
+
+
+// === CTA FINAL ===
+.cta-final {
+  padding: $space-3xl 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $accent-dim, transparent);
+    opacity: 0.4;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba($accent, 0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .section-eyebrow { margin-bottom: $space-md; }
+
+  h2 {
+    @include display-font(64px, 5px);
+    color: $ink;
+    margin-bottom: $space-xl;
+
+    em { color: $accent; font-style: normal; }
+
+    @include tablet { font-size: 48px; }
+    @include mobile { font-size: 36px; }
+  }
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+// === FOOTER ===
+.footer {
+  border-top: 1px solid $border;
+  padding: $space-2xl 0 $space-xl;
+}
+
+.footer-inner {
+  @include flex(row, flex-start, space-between, $space-2xl);
+  margin-bottom: $space-xl;
+
+  @include tablet { flex-direction: column; gap: $space-xl; }
+}
+
+.footer-brand {
+  max-width: 280px;
+
+  .footer-desc {
+    font-size: 13px;
+    color: $ink-faint;
+    line-height: 1.8;
+    margin-top: $space-md;
+  }
+}
+
+.footer-links {
+  @include flex(row, flex-start, flex-end, $space-2xl);
+
+  @include mobile {
+    flex-wrap: wrap;
+    gap: $space-xl;
+    justify-content: flex-start;
+  }
+}
+
+.footer-col {
+  @include flex(column, flex-start, flex-start, $space-sm);
+
+  .footer-col-title {
+    @include mono(9px, 2px);
+    color: $ink-faint;
+    text-transform: uppercase;
+    margin-bottom: $space-xs;
+  }
+
+  a {
+    font-size: 13px;
+    color: $ink-muted;
+    transition: color $transition;
+
+    &:hover { color: $accent; }
+  }
+}
+
+.footer-bottom {
+  @include flex(row, center, space-between, $space-md);
+  padding-top: $space-lg;
+  border-top: 1px solid $border;
+  @include mono(9px, 1px);
+  color: $ink-faint;
+  text-transform: uppercase;
+
+  @include mobile { flex-direction: column; text-align: center; }
+}
+
+// === REVEAL ANIMATION ===
+[data-reveal] { @include reveal-base; }

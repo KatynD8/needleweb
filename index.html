@@ -1,483 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan'Ink — Application desktop de gestion pour studios de tatouage. Clients, agenda, stocks, contrats, finances.">
+  <title>Plan'Ink — Studio Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<style>
-:root {
-  --ink: #0a0a0b;
-  --gold: #c8a96e;
-  --gold-dim: #8a7248;
-  --gold-glow: rgba(200,169,110,0.12);
-  --bg: #0e0e10;
-  --bg2: #16161a;
-  --bg3: #1e1e24;
-  --border: rgba(255,255,255,0.08);
-  --txt: #e8e4dc;
-  --muted: #7a7a8a;
-  --r: 10px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--txt); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; }
-a { color: inherit; text-decoration: none; }
-
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(14,14,16,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 62px;
-}
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo-icon { font-size: 22px; color: var(--gold); }
-.nav-logo-name { font-family: 'Bebas Neue', 'Impact', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--gold); }
-.nav-logo-sub { font-size: 10px; color: var(--muted); letter-spacing: 2px; font-family: monospace; }
-.nav-links { display: flex; gap: 28px; }
-.nav-links a { font-size: 13px; color: var(--muted); letter-spacing: 0.5px; transition: color 0.15s; }
-.nav-links a:hover { color: var(--txt); }
-.nav-cta { display: flex; gap: 10px; align-items: center; }
-.btn-ghost { padding: 8px 18px; border: 0.5px solid var(--border); border-radius: var(--r); font-size: 13px; color: var(--muted); background: transparent; cursor: pointer; transition: all 0.15s; }
-.btn-ghost:hover { border-color: var(--gold-dim); color: var(--txt); }
-.btn-gold { padding: 9px 20px; border: none; border-radius: var(--r); font-size: 13px; font-weight: 500; background: var(--gold); color: #0a0a0b; cursor: pointer; transition: all 0.15s; }
-.btn-gold:hover { background: #d4b87a; }
-
-.hero {
-  text-align: center;
-  padding: 80px 40px 70px;
-  max-width: 820px; margin: 0 auto;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: var(--gold-glow); border: 0.5px solid var(--gold-dim);
-  border-radius: 20px; padding: 4px 14px; font-size: 12px;
-  color: var(--gold); font-family: monospace; letter-spacing: 1px;
-  margin-bottom: 28px;
-}
-.hero-title {
-  font-family: 'Bebas Neue', 'Impact', sans-serif;
-  font-size: clamp(48px, 8vw, 82px);
-  letter-spacing: 4px; line-height: 1.0; color: var(--txt);
-  margin-bottom: 20px;
-}
-.hero-title span { color: var(--gold); }
-.hero-sub {
-  font-size: 17px; color: var(--muted); max-width: 560px;
-  margin: 0 auto 36px; line-height: 1.7;
-}
-.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-hero { padding: 13px 30px; border-radius: var(--r); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-.btn-hero-primary { background: var(--gold); color: #0a0a0b; border: none; }
-.btn-hero-primary:hover { background: #d4b87a; transform: translateY(-1px); }
-.btn-hero-sec { background: transparent; color: var(--txt); border: 0.5px solid var(--border); }
-.btn-hero-sec:hover { border-color: var(--gold-dim); }
-
-.hero-proof { margin-top: 32px; font-size: 12px; color: var(--muted); letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 18px; }
-.hero-proof span { display: flex; align-items: center; gap: 5px; }
-.dot-green { width: 6px; height: 6px; border-radius: 50%; background: #27ae60; display: inline-block; }
-
-.app-preview {
-  margin: 0 40px 70px;
-  border-radius: 14px;
-  border: 0.5px solid var(--border);
-  background: var(--bg2);
-  overflow: hidden;
-}
-.app-bar {
-  background: var(--bg3); border-bottom: 0.5px solid var(--border);
-  padding: 10px 16px; display: flex; align-items: center; gap: 8px;
-}
-.app-dot { width: 10px; height: 10px; border-radius: 50%; }
-.app-screen {
-  display: grid; grid-template-columns: 180px 1fr;
-  height: 320px;
-}
-.app-sidebar-mock {
-  border-right: 0.5px solid var(--border);
-  background: var(--bg3); padding: 16px 12px;
-  display: flex; flex-direction: column; gap: 4px;
-}
-.app-nav-item {
-  padding: 8px 12px; border-radius: 6px; font-size: 11px;
-  font-family: monospace; letter-spacing: 1px; color: var(--muted);
-  display: flex; align-items: center; gap: 8px;
-}
-.app-nav-item.active { background: var(--gold-glow); color: var(--gold); border: 0.5px solid var(--gold-dim); }
-.app-main-mock { padding: 20px; overflow: hidden; }
-.app-stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-.app-stat { background: var(--bg3); border: 0.5px solid var(--border); border-radius: 8px; padding: 12px; }
-.app-stat-l { font-size: 9px; color: var(--muted); font-family: monospace; letter-spacing: 1px; margin-bottom: 4px; }
-.app-stat-v { font-family: 'Bebas Neue', 'Impact', sans-serif; font-size: 24px; color: var(--txt); }
-.app-stat-v.gold { color: var(--gold); }
-.app-section { font-size: 9px; color: var(--muted); letter-spacing: 2px; font-family: monospace; margin-bottom: 10px; }
-.app-rdv-row { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; background: var(--bg3); border: 0.5px solid var(--border); margin-bottom: 6px; }
-.app-rdv-date { text-align: center; min-width: 32px; }
-.app-rdv-day { font-family: 'Bebas Neue','Impact',sans-serif; font-size: 18px; color: var(--gold); line-height: 1; }
-.app-rdv-mo { font-size: 8px; color: var(--muted); font-family: monospace; }
-.app-rdv-info { flex: 1; }
-.app-rdv-title { font-size: 11px; font-weight: 500; }
-.app-rdv-sub { font-size: 10px; color: var(--muted); }
-.badge-g { background: rgba(39,174,96,0.15); color: #2ecc71; border: 0.5px solid rgba(39,174,96,0.3); padding: 2px 7px; border-radius: 4px; font-size: 9px; font-family: monospace; }
-.badge-y { background: rgba(241,196,15,0.12); color: #f1c40f; border: 0.5px solid rgba(241,196,15,0.25); padding: 2px 7px; border-radius: 4px; font-size: 9px; font-family: monospace; }
-
-.section { padding: 70px 40px; max-width: 1100px; margin: 0 auto; }
-.section-label { font-family: monospace; font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
-.section-title { font-family: 'Bebas Neue','Impact',sans-serif; font-size: clamp(32px, 4vw, 48px); letter-spacing: 3px; color: var(--txt); margin-bottom: 14px; line-height: 1.05; }
-.section-sub { color: var(--muted); font-size: 16px; max-width: 520px; line-height: 1.7; margin-bottom: 48px; }
-
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-.feat-card {
-  background: var(--bg2); border: 0.5px solid var(--border);
-  border-radius: 12px; padding: 24px;
-  transition: border-color 0.2s;
-}
-.feat-card:hover { border-color: var(--gold-dim); }
-.feat-icon { font-size: 22px; margin-bottom: 14px; }
-.feat-title { font-size: 15px; font-weight: 500; color: var(--txt); margin-bottom: 8px; }
-.feat-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.plan-card {
-  background: var(--bg2); border: 0.5px solid var(--border);
-  border-radius: 14px; padding: 28px 24px;
-  display: flex; flex-direction: column; gap: 0;
-  position: relative;
-}
-.plan-card.featured {
-  border: 1.5px solid var(--gold-dim);
-  background: linear-gradient(160deg, rgba(200,169,110,0.06) 0%, var(--bg2) 60%);
-}
-.plan-badge {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--gold); color: #0a0a0b; font-size: 10px; font-weight: 500;
-  padding: 3px 14px; border-radius: 20px; font-family: monospace; letter-spacing: 1px;
-  white-space: nowrap;
-}
-.plan-name { font-family: monospace; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; }
-.plan-price { font-family: 'Bebas Neue','Impact',sans-serif; font-size: 52px; color: var(--txt); line-height: 1; margin-bottom: 4px; }
-.plan-price span { font-size: 18px; color: var(--muted); font-family: sans-serif; font-weight: 400; }
-.plan-period { font-size: 12px; color: var(--muted); margin-bottom: 22px; }
-.plan-divider { height: 0.5px; background: var(--border); margin: 18px 0; }
-.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 24px; }
-.plan-features li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-.plan-features li::before { content: ''; width: 14px; height: 14px; border-radius: 50%; background: var(--gold-glow); border: 0.5px solid var(--gold-dim); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.plan-check { color: var(--gold); font-size: 10px; }
-.plan-btn { width: 100%; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-align: center; transition: all 0.15s; }
-.plan-btn-ghost { background: transparent; border: 0.5px solid var(--border); color: var(--muted); }
-.plan-btn-ghost:hover { border-color: var(--gold-dim); color: var(--txt); }
-.plan-btn-gold { background: var(--gold); color: #0a0a0b; border: none; }
-.plan-btn-gold:hover { background: #d4b87a; }
-
-.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.testi-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 12px; padding: 22px; }
-.testi-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
-.testi-text { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-.testi-author { display: flex; align-items: center; gap: 10px; }
-.testi-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--gold-glow); border: 0.5px solid var(--gold-dim); display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 11px; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-.testi-name { font-size: 12px; font-weight: 500; }
-.testi-role { font-size: 11px; color: var(--muted); }
-
-.faq { max-width: 680px; }
-.faq-item { border-bottom: 0.5px solid var(--border); padding: 18px 0; }
-.faq-q { font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--txt); }
-.faq-a { font-size: 13px; color: var(--muted); line-height: 1.7; padding-top: 10px; display: none; }
-.faq-a.open { display: block; }
-.faq-chevron { color: var(--gold); font-size: 16px; transition: transform 0.2s; }
-.faq-chevron.open { transform: rotate(45deg); }
-
-.cta-section {
-  margin: 0 40px 70px;
-  border-radius: 16px;
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  padding: 60px 40px;
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.cta-section::before {
-  content: '';
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 300px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-}
-.cta-title { font-family: 'Bebas Neue','Impact',sans-serif; font-size: 44px; letter-spacing: 3px; margin-bottom: 14px; }
-.cta-sub { color: var(--muted); font-size: 16px; max-width: 440px; margin: 0 auto 30px; }
-
-.footer { border-top: 0.5px solid var(--border); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; }
-.footer-copy { font-size: 12px; color: var(--muted); font-family: monospace; letter-spacing: 1px; }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-size: 12px; color: var(--muted); transition: color 0.15s; }
-.footer-links a:hover { color: var(--txt); }
-
-@media (max-width: 700px) {
-  .pricing-grid, .testimonials { grid-template-columns: 1fr; }
-  .app-stat-row { grid-template-columns: repeat(2, 1fr); }
-  .app-screen { grid-template-columns: 1fr; }
-  .app-sidebar-mock { display: none; }
-}
-</style>
-
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
-<nav class="nav">
-  <div class="nav-logo">
-    <span class="nav-logo-icon">⬡</span>
-    <div>
-      <div class="nav-logo-name">PLAN'INK</div>
-      <div class="nav-logo-sub">STUDIO · SaaS</div>
-    </div>
-  </div>
-  <div class="nav-links">
-    <a href="#">Fonctionnalités</a>
-    <a href="#">Tarifs</a>
-    <a href="#">Témoignages</a>
-    <a href="#">FAQ</a>
-  </div>
-  <div class="nav-cta">
-    <button class="btn-ghost">Connexion</button>
-    <button class="btn-gold">Essai gratuit</button>
-  </div>
-</nav>
-
-<div class="hero">
-  <div class="hero-badge">
-    <span class="dot-green"></span>
-    NOUVEAU · TRAÇABILITÉ LOTS INTÉGRÉE
-  </div>
-  <h1 class="hero-title">Le studio de tatouage<br>dans votre <span>poche</span></h1>
-  <p class="hero-sub">Clients, agenda, stocks, contrats de consentement et finances — tout en un seul outil pensé par des tatoueurs, pour des tatoueurs.</p>
-  <div class="hero-actions">
-    <button class="btn-hero btn-hero-primary">Commencer gratuitement — 14 jours</button>
-    <button class="btn-hero btn-hero-sec">Voir la démo →</button>
-  </div>
-  <div class="hero-proof">
-    <span><span class="dot-green"></span> Aucune carte requise</span>
-    <span>· Installation en 2 min</span>
-    <span>· Données 100% privées</span>
-  </div>
-</div>
-
-<div class="app-preview">
-  <div class="app-bar">
-    <div class="app-dot" style="background:#c0392b"></div>
-    <div class="app-dot" style="background:#f39c12"></div>
-    <div class="app-dot" style="background:#27ae60"></div>
-    <div style="flex:1;text-align:center;font-family:monospace;font-size:11px;color:var(--muted)">Plan'ink Studio — Dashboard</div>
-  </div>
-  <div class="app-screen">
-    <div class="app-sidebar-mock">
-      <div class="app-nav-item active">◈ &nbsp;Dashboard</div>
-      <div class="app-nav-item">◉ &nbsp;Clients</div>
-      <div class="app-nav-item">◷ &nbsp;Agenda</div>
-      <div class="app-nav-item">◫ &nbsp;Stocks & Lots</div>
-      <div class="app-nav-item">◪ &nbsp;Contrats</div>
-      <div class="app-nav-item">◬ &nbsp;Finances</div>
-    </div>
-    <div class="app-main-mock">
-      <div class="app-stat-row">
-        <div class="app-stat"><div class="app-stat-l">CLIENTS</div><div class="app-stat-v">47</div></div>
-        <div class="app-stat"><div class="app-stat-l">RDV AUJOURD'HUI</div><div class="app-stat-v">3</div></div>
-        <div class="app-stat"><div class="app-stat-l">À VENIR</div><div class="app-stat-v">12</div></div>
-        <div class="app-stat"><div class="app-stat-l">CA CE MOIS</div><div class="app-stat-v gold">3 840 €</div></div>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="Plan'Ink">
+        <span class="logo-hex">⬡</span>
+        <div>
+          <div class="logo-title">PLAN'INK</div>
+          <div class="logo-sub">STUDIO MANAGEMENT</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Fonctionnalités</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#compare">Comparatif</a>
+        <a href="#faq">FAQ</a>
       </div>
-      <div class="app-section">PROCHAINS RENDEZ-VOUS</div>
-      <div class="app-rdv-row">
-        <div class="app-rdv-date"><div class="app-rdv-day">5</div><div class="app-rdv-mo">AVR</div></div>
-        <div class="app-rdv-info"><div class="app-rdv-title">Dragon dos complet — séance 3/5</div><div class="app-rdv-sub">Laure Martin · 10:00 · 240min</div></div>
-        <span class="badge-g">CONFIRMÉ</span>
+      <a href="#pricing" class="btn-nav">TÉLÉCHARGER</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+      <a href="#features">Fonctionnalités</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#compare">Comparatif</a>
+      <a href="#faq">FAQ</a>
+      <a href="#pricing" class="btn-nav">TÉLÉCHARGER</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-lines" aria-hidden="true"></div>
+    <div class="hero-glow"  aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Gestion de studio de tatouage</span>
+        <span class="dot" aria-hidden="true"></span>
       </div>
-      <div class="app-rdv-row">
-        <div class="app-rdv-date"><div class="app-rdv-day">6</div><div class="app-rdv-mo">AVR</div></div>
-        <div class="app-rdv-info"><div class="app-rdv-title">Mandala avant-bras</div><div class="app-rdv-sub">Marc Dupont · 14:00 · 90min</div></div>
-        <span class="badge-y">EN ATTENTE</span>
+      <h1 class="hero-title">
+        <span class="line-wrap"><span class="line">GÉREZ VOTRE</span></span>
+        <span class="line-wrap accent-line"><span class="line">STUDIO.</span></span>
+        <span class="line-wrap"><span class="line">PAS VOS OUTILS.</span></span>
+      </h1>
+      <p class="hero-desc">
+        Clients, rendez-vous, stocks, contrats, finances.<br>
+        Tout au même endroit. Application desktop Windows,<br>
+        vos données chez vous.
+      </p>
+      <div class="hero-badges">
+        <span class="badge-pill">◈ Windows</span>
+        <span class="badge-pill">◈ Hors-ligne</span>
+        <span class="badge-pill">◈ Vos données vous appartiennent</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn-primary">CHOISIR MA FORMULE</a>
+        <a href="#features" class="btn-ghost">VOIR LES FONCTIONNALITÉS →</a>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-label">FONCTIONNALITÉS</div>
-  <h2 class="section-title">Tout ce dont un studio<br>a besoin</h2>
-  <p class="section-sub">De la prise de RDV à la conformité réglementaire, Plan'ink couvre chaque aspect de votre activité.</p>
-  <div class="features-grid">
-    <div class="feat-card">
-      <div class="feat-icon">◉</div>
-      <div class="feat-title">Gestion clients</div>
-      <div class="feat-desc">Fiches complètes avec allergies, historique des séances, contrats signés et notes personnelles. Recherche instantanée.</div>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">◷</div>
-      <div class="feat-title">Agenda visuel</div>
-      <div class="feat-desc">Calendrier mensuel, vue liste, création de RDV en 2 clics. Statuts confirmé / en attente / terminé / annulé.</div>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">◫</div>
-      <div class="feat-title">Stocks & Lots</div>
-      <div class="feat-desc">Suivi des encres, aiguilles et consommables. Alertes de seuil, gestion par numéro de lot avec dates de péremption.</div>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">◪</div>
-      <div class="feat-title">Contrats conformes</div>
-      <div class="feat-desc">Génération de formulaires de consentement PDF avec traçabilité réglementaire complète des lots de matériel utilisés.</div>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">◬</div>
-      <div class="feat-title">Finances</div>
-      <div class="feat-desc">Suivi des recettes et dépenses, CA mensuel, tableau de bord financier. Export des données pour votre comptable.</div>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">◈</div>
-      <div class="feat-title">Données 100% privées</div>
-      <div class="feat-desc">Données stockées localement sur votre machine (version desktop) ou serveur chiffré (SaaS). Conforme RGPD.</div>
-    </div>
-  </div>
-</div>
-
-<div style="border-top: 0.5px solid var(--border);"></div>
-
-<div class="section" id="pricing">
-  <div class="section-label">TARIFS</div>
-  <h2 class="section-title">Simple. Transparent.<br>Sans surprise.</h2>
-  <p class="section-sub">Un abonnement mensuel, toutes les fonctionnalités incluses. Résiliable à tout moment.</p>
-  <div class="pricing-grid">
-    <div class="plan-card">
-      <div class="plan-name">SOLO</div>
-      <div class="plan-price">9<span> €</span></div>
-      <div class="plan-period">/ mois · facturation mensuelle</div>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="plan-check">✓</span> 1 artiste</li>
-        <li><span class="plan-check">✓</span> Clients illimités</li>
-        <li><span class="plan-check">✓</span> Agenda & RDV</li>
-        <li><span class="plan-check">✓</span> Gestion des stocks</li>
-        <li><span class="plan-check">✓</span> Contrats PDF</li>
-        <li style="opacity:0.4"><span>–</span> Traçabilité lots</li>
-        <li style="opacity:0.4"><span>–</span> Module finances</li>
-      </ul>
-      <button class="plan-btn plan-btn-ghost">Commencer</button>
-    </div>
-    <div class="plan-card featured">
-      <div class="plan-badge">RECOMMANDÉ</div>
-      <div class="plan-name">STUDIO</div>
-      <div class="plan-price">19<span> €</span></div>
-      <div class="plan-period">/ mois · facturation mensuelle</div>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="plan-check">✓</span> Jusqu'à 3 artistes</li>
-        <li><span class="plan-check">✓</span> Clients illimités</li>
-        <li><span class="plan-check">✓</span> Agenda & RDV</li>
-        <li><span class="plan-check">✓</span> Gestion des stocks</li>
-        <li><span class="plan-check">✓</span> Contrats PDF</li>
-        <li><span class="plan-check">✓</span> Traçabilité des lots</li>
-        <li><span class="plan-check">✓</span> Module finances complet</li>
-      </ul>
-      <button class="plan-btn plan-btn-gold">Essai 14 jours gratuit</button>
-    </div>
-    <div class="plan-card">
-      <div class="plan-name">COLLECTIF</div>
-      <div class="plan-price">39<span> €</span></div>
-      <div class="plan-period">/ mois · facturation mensuelle</div>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="plan-check">✓</span> Artistes illimités</li>
-        <li><span class="plan-check">✓</span> Clients illimités</li>
-        <li><span class="plan-check">✓</span> Tout le plan Studio</li>
-        <li><span class="plan-check">✓</span> Statistiques avancées</li>
-        <li><span class="plan-check">✓</span> Support prioritaire</li>
-        <li><span class="plan-check">✓</span> Onboarding dédié</li>
-        <li><span class="plan-check">✓</span> Export comptable</li>
-      </ul>
-      <button class="plan-btn plan-btn-ghost">Nous contacter</button>
-    </div>
-  </div>
-  <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:20px;font-family:monospace">
-    Tous les plans incluent 14 jours d'essai gratuit · Aucune carte bancaire requise
-  </p>
-</div>
-
-<div style="border-top: 0.5px solid var(--border);"></div>
-
-<div class="section">
-  <div class="section-label">TÉMOIGNAGES</div>
-  <h2 class="section-title">Ils tatoue,<br>on gère le reste</h2>
-  <div class="testimonials">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"Enfin un outil qui comprend notre métier. Les contrats avec traçabilité des lots, c'est exactement ce qu'il nous fallait pour être en règle."</div>
-      <div class="testi-author">
-        <div class="testi-avatar">SB</div>
-        <div><div class="testi-name">Sarah B.</div><div class="testi-role">Tatoueur indépendant · Lyon</div></div>
+    <div class="hero-mockup" aria-hidden="true">
+      <div class="mockup-glow"></div>
+      <div class="mockup-window">
+        <div class="mockup-titlebar">
+          <span class="mockup-dot r"></span>
+          <span class="mockup-dot y"></span>
+          <span class="mockup-dot g"></span>
+          <span class="mockup-title">Plan'Ink — Studio Management</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-sidebar">
+            <div class="mockup-logo-small">PLAN'INK</div>
+            <div class="mockup-nav-item active">◈ Dashboard</div>
+            <div class="mockup-nav-item">◉ Clients</div>
+            <div class="mockup-nav-item">◷ Agenda</div>
+            <div class="mockup-nav-item">◫ Stocks</div>
+            <div class="mockup-nav-item">◪ Contrats</div>
+            <div class="mockup-nav-item">◬ Finances</div>
+          </div>
+          <div class="mockup-main">
+            <div class="mockup-page-title">DASHBOARD</div>
+            <div class="mockup-stats">
+              <div class="mockup-stat"><div class="ms-label">Clients</div><div class="ms-val">24</div></div>
+              <div class="mockup-stat"><div class="ms-label">RDV aujourd'hui</div><div class="ms-val">3</div></div>
+              <div class="mockup-stat"><div class="ms-label">CA ce mois</div><div class="ms-val accent">2 840 €</div></div>
+              <div class="mockup-stat"><div class="ms-label">Alertes stock</div><div class="ms-val red">2</div></div>
+            </div>
+            <div class="mockup-section-title">Prochains rendez-vous</div>
+            <div class="mockup-rdv">
+              <div class="mockup-rdv-date"><div class="mrd-day">26</div><div class="mrd-mon">AVR</div></div>
+              <div class="mockup-rdv-info"><div class="mri-title">Dragon dos complet</div><div class="mri-sub">Laure Martin · 10:00 · 180min</div></div>
+              <span class="mockup-badge green">CONFIRMÉ</span>
+            </div>
+            <div class="mockup-rdv">
+              <div class="mockup-rdv-date"><div class="mrd-day">27</div><div class="mrd-mon">AVR</div></div>
+              <div class="mockup-rdv-info"><div class="mri-title">Mandala avant-bras</div><div class="mri-sub">Marc Dupont · 14:00 · 90min</div></div>
+              <span class="mockup-badge green">CONFIRMÉ</span>
+            </div>
+            <div class="mockup-rdv">
+              <div class="mockup-rdv-date"><div class="mrd-day">28</div><div class="mrd-mon">AVR</div></div>
+              <div class="mockup-rdv-info"><div class="mri-title">Rose minimaliste</div><div class="mri-sub">Sophie Leclerc · 11:00 · 60min</div></div>
+              <span class="mockup-badge yellow">EN ATTENTE</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"J'ai remplacé 3 outils différents par Plan'ink. L'agenda, la gestion des stocks et la compta au même endroit, c'est un gain de temps énorme."</div>
-      <div class="testi-author">
-        <div class="testi-avatar">RK</div>
-        <div><div class="testi-name">Romain K.</div><div class="testi-role">Studio Ink & Co · Paris 11e</div></div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">POURQUOI PLAN'INK</div>
+        <h2>CONÇU PAR ET POUR<br>DES <em>ARTISTES.</em></h2>
+        <p>Pas un CRM générique repeint. Un outil pensé pour la réalité quotidienne d'un studio de tatouage.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-reveal><span class="feature-icon">◫</span><h3>Hors-ligne d'abord</h3><p>Vos données restent sur votre machine. Pas de cloud imposé, pas de dépendance réseau. L'app fonctionne même sans internet.</p></div>
+        <div class="feature-card" data-reveal><span class="feature-icon">◪</span><h3>Contrats conformes</h3><p>Formulaires de consentement éclairé avec traçabilité des numéros de lot matériel. Impression PDF en un clic.</p></div>
+        <div class="feature-card" data-reveal><span class="feature-icon">◉</span><h3>Clients enrichis</h3><p>Allergies, historique de séances, notes libres. La fiche client qui anticipe vos besoins avant même que vous les formuliez.</p></div>
+        <div class="feature-card" data-reveal><span class="feature-icon">◷</span><h3>Agenda visuel</h3><p>Vue mensuelle avec chips colorées par statut. Nouveau rendez-vous en trois clics. Détail du jour en un clic.</p></div>
+        <div class="feature-card" data-reveal><span class="feature-icon">◬</span><h3>Finances intégrées</h3><p>CA mensuel, dépenses, résultat net. La saisie de recette se déclenche automatiquement à la fin d'une séance.</p></div>
+        <div class="feature-card" data-reveal><span class="feature-icon">◈</span><h3>Interface pro</h3><p>Dark mode permanent, typographie soignée. Une application qui ressemble à votre métier, pas à un tableur.</p></div>
       </div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★☆</div>
-      <div class="testi-text">"L'interface est élégante et intuitive. Mes clients adorent recevoir leurs contrats propres et professionnels. Ça change l'image du studio."</div>
-      <div class="testi-author">
-        <div class="testi-avatar">MV</div>
-        <div><div class="testi-name">Marie V.</div><div class="testi-role">Black Moon Tattoo · Bordeaux</div></div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">TARIFS</div>
+        <h2>SIMPLE. DIRECT.<br><em>SANS SURPRISE.</em></h2>
+        <p>Deux formules. Pas de version gratuite bridée.<br>On est quali, on assume.</p>
+      </div>
+      <div class="billing-toggle-wrap">
+        <span class="billing-label active" id="lbl-monthly">MENSUEL</span>
+        <button class="billing-toggle" id="billing-toggle" aria-label="Basculer entre facturation mensuelle et annuelle" aria-pressed="false"></button>
+        <span class="billing-label" id="lbl-annual">ANNUEL</span>
+        <span class="save-badge" id="save-badge">ÉCONOMISEZ JUSQU'À 2 MOIS</span>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card" id="card-solo">
+          <div class="plan-header">
+            <div class="plan-name">SINGLE ARTIST</div>
+            <div class="plan-tagline">Un artiste · Un studio</div>
+          </div>
+          <div class="plan-price-wrap">
+            <div class="plan-price"><sup>€</sup><span id="price-solo">19</span><em>/mois</em></div>
+            <div class="plan-annual-note" id="annual-note-solo">&nbsp;</div>
+          </div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Gestion clients illimitée</li>
+            <li>Agenda & rendez-vous</li>
+            <li>Stocks & alertes de seuil</li>
+            <li>Contrats de consentement PDF</li>
+            <li>Traçabilité numéros de lot</li>
+            <li>Suivi financier mensuel & annuel</li>
+            <li>Paramètres studio & logo</li>
+            <li>Données stockées localement</li>
+          </ul>
+          <a href="#" class="btn-plan ghost">COMMENCER →</a>
+          <div class="plan-note">Sans engagement · Résiliable à tout moment</div>
+        </div>
+        <div class="pricing-card featured" id="card-studio">
+          <div class="plan-header">
+            <div class="plan-name">STUDIO</div>
+            <div class="plan-tagline">Multi-artistes · Collaboration</div>
+          </div>
+          <div class="plan-price-wrap">
+            <div class="plan-price"><sup>€</sup><span id="price-studio">39</span><em>/mois</em></div>
+            <div class="plan-annual-note" id="annual-note-studio">&nbsp;</div>
+          </div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Tout Single Artist inclus</li>
+            <li>Jusqu'à 5 artistes</li>
+            <li>Agenda partagé multi-artistes</li>
+            <li>Stocks mutualisés</li>
+            <li>Finances consolidées par artiste</li>
+            <li>Export CSV comptabilité</li>
+            <li>Support prioritaire</li>
+            <li>Mises à jour en avant-première</li>
+          </ul>
+          <a href="#" class="btn-plan solid">COMMENCER →</a>
+          <div class="plan-note">Sans engagement · Résiliable à tout moment</div>
+        </div>
+      </div>
+      <p class="pricing-guarantee">
+        <span class="dot" aria-hidden="true"></span>
+        Sans engagement &nbsp;·&nbsp; Résiliable à tout moment &nbsp;·&nbsp; Paiement sécurisé Stripe
+        <span class="dot" aria-hidden="true"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="compare-section" id="compare">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">COMPARATIF</div>
+        <h2>CE QUI EST<br><em>INCLUS.</em></h2>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="col-feature">Fonctionnalité</th>
+              <th class="col-plan">Single Artist</th>
+              <th class="col-plan featured">Studio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Clients illimités</td>               <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Agenda & rendez-vous</td>            <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Gestion des stocks</td>              <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Contrats PDF + traçabilité lots</td> <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Suivi financier mensuel</td>         <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Paramètres studio & logo</td>        <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Données 100% locales</td>            <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr class="row-divider"><td colspan="3"></td></tr>
+            <tr><td>Nombre d'artistes</td>               <td class="val-muted">1</td>                         <td class="val-accent">Jusqu'à 5</td></tr>
+            <tr><td>Agenda partagé</td>                  <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
+            <tr><td>Finances consolidées</td>            <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
+            <tr><td>Export CSV comptabilité</td>         <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
+            <tr><td>Support prioritaire</td>             <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<div style="border-top: 0.5px solid var(--border);"></div>
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">FAQ</div>
+        <h2>QUESTIONS<br><em>FRÉQUENTES.</em></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Mes données sont-elles en sécurité ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Oui. Plan'Ink est une application desktop : toutes vos données (clients, RDV, finances) sont stockées localement sur votre machine dans un fichier JSON. Rien n'est envoyé sur nos serveurs. Vous restez souverain de vos données.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">L'app fonctionne-t-elle sans internet ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Complètement. L'application est hors-ligne par défaut. La connexion internet n'est requise qu'une fois par jour pour valider votre licence en arrière-plan. Si vous êtes hors-ligne, la validation est mise en cache 24h.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Puis-je changer de formule ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Oui, à tout moment depuis votre espace client. En cas de passage de Studio à Single Artist, votre prochain cycle de facturation applique le nouveau tarif. Aucun frais de changement.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Comment fonctionne la résiliation ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Résiliation en un clic depuis votre espace client. Vos données restent sur votre machine — elles ne sont jamais supprimées par nous. L'accès aux mises à jour s'arrête à la fin de la période payée.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Sur quels systèmes fonctionne Plan'Ink ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Actuellement Windows 10 et Windows 11 (64-bit). Les versions macOS et Linux sont prévues dans la roadmap 2025.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Les contrats PDF sont-ils conformes à la réglementation ?<em class="faq-icon" aria-hidden="true">+</em></button>
+          <div class="faq-a" role="region"><p>Les modèles incluent les clauses de consentement éclairé, les déclarations médicales, la traçabilité des numéros de lot (aiguilles, encres), et les soins post-tatouage — rédigés en tenant compte du cadre réglementaire français. Consultez votre ordre professionnel pour toute validation juridique.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="section">
-  <div class="section-label">FAQ</div>
-  <h2 class="section-title">Questions fréquentes</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Mes données sont-elles sécurisées ? <span class="faq-chevron">+</span></div>
-      <div class="faq-a">Oui. Toutes vos données sont chiffrées en transit (TLS) et au repos. Nous ne revendons aucune donnée. Vous pouvez exporter ou supprimer votre compte à tout moment. Conforme RGPD.</div>
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-content">
+        <div class="section-eyebrow">PRÊT À COMMENCER ?</div>
+        <h2>VOTRE STUDIO<br>MÉRITE MIEUX<br>QU'UN <em>TABLEUR.</em></h2>
+        <a href="#pricing" class="btn-primary large">CHOISIR MA FORMULE</a>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Puis-je utiliser Plan'ink hors ligne ? <span class="faq-chevron">+</span></div>
-      <div class="faq-a">La version SaaS nécessite une connexion internet. Si vous préférez une installation 100% locale, la version desktop Electron est disponible en téléchargement séparé.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">La traçabilité des lots est-elle conforme à la réglementation française ? <span class="faq-chevron">+</span></div>
-      <div class="faq-a">Oui. Les contrats générés intègrent les informations requises par l'arrêté du 12 décembre 2008 : numéro de lot, fabricant, dates de fabrication et de péremption, certification de stérilisation.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Comment migrer mes données existantes ? <span class="faq-chevron">+</span></div>
-      <div class="faq-a">Un import CSV est disponible pour les clients et les RDV. Notre équipe peut vous accompagner gratuitement lors de l'onboarding sur le plan Collectif.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Puis-je annuler à tout moment ? <span class="faq-chevron">+</span></div>
-      <div class="faq-a">Absolument. Aucun engagement, aucune pénalité. Vous pouvez résilier depuis votre espace client en un clic. Vos données restent accessibles 30 jours après la résiliation.</div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<div class="cta-section">
-  <div class="cta-title">Prêt à tatouer<br>sans la paperasse ?</div>
-  <p class="cta-sub">Rejoignez les artistes qui gèrent leur studio intelligemment. 14 jours gratuits, sans engagement.</p>
-  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <button class="btn-hero btn-hero-primary">Créer mon compte gratuit</button>
-    <button class="btn-hero btn-hero-sec">Voir la démo</button>
-  </div>
-  <p style="margin-top:20px;font-size:12px;color:var(--muted);font-family:monospace">Aucune carte bancaire · Installation en 2 min · Support FR</p>
-</div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-hex">⬡</span>
+            <div>
+              <div class="logo-title">PLAN'INK</div>
+              <div class="logo-sub">STUDIO MANAGEMENT</div>
+            </div>
+          </div>
+          <p class="footer-desc">Application desktop de gestion pour studios de tatouage. Fait avec ◈ en Normandie.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <div class="footer-col-title">PRODUIT</div>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#pricing">Tarifs</a>
+            <a href="#compare">Comparatif</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">LÉGAL</div>
+            <a href="#">CGV</a>
+            <a href="#">Confidentialité</a>
+            <a href="#">Mentions légales</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">CONTACT</div>
+            <a href="#">Support</a>
+            <a href="mailto:contact@planink.fr">contact@planink.fr</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Plan'Ink. Tous droits réservés.</span>
+        <span>Paiements sécurisés par Stripe</span>
+      </div>
+    </div>
+  </footer>
 
-<footer class="footer">
-  <div class="footer-copy">© 2025 PLAN'INK STUDIO · TOUS DROITS RÉSERVÉS</div>
-  <div class="footer-links">
-    <a href="#">Mentions légales</a>
-    <a href="#">CGV</a>
-    <a href="#">Confidentialité</a>
-    <a href="#">Contact</a>
-  </div>
-</footer>
-
-<script>
-function toggleFaq(el) {
-  const a = el.nextElementSibling;
-  const c = el.querySelector('.faq-chevron');
-  const open = a.classList.toggle('open');
-  c.classList.toggle('open', open);
-}
-</script>
+  <script src="script.js"></script>
+</body>
+</html>
