@@ -1,338 +1,506 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Plan'Ink — Application desktop de gestion pour studios de tatouage. Clients, agenda, stocks, contrats, finances.">
-  <title>Plan'Ink — Studio Management</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan'Ink — Le logiciel de gestion pour studios de tatouage</title>
+    <meta
+      name="description"
+      content="Plan'Ink. Gestion de clients, agenda, contrats RGPD, traçabilité produits, finances. Conçu pour les tatoueurs indépendants. 19€/mois."
+    />
+    <meta property="og:title" content="Plan'Ink — Tattoo Studio Manager" />
+    <meta
+      property="og:description"
+      content="Le logiciel de gestion conçu pour les studios de tatouage. Agenda, clients, contrats RGPD, traçabilité."
+    />
+    <meta property="og:type" content="website" />
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#" class="logo" aria-label="Plan'Ink">
-        <span class="logo-hex">⬡</span>
-        <div>
-          <div class="logo-title">PLAN'INK</div>
-          <div class="logo-sub">STUDIO MANAGEMENT</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="#features">Fonctionnalités</a>
-        <a href="#pricing">Tarifs</a>
-        <a href="#compare">Comparatif</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <a href="#pricing" class="btn-nav">TÉLÉCHARGER</a>
-      <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-      <a href="#features">Fonctionnalités</a>
-      <a href="#pricing">Tarifs</a>
-      <a href="#compare">Comparatif</a>
-      <a href="#faq">FAQ</a>
-      <a href="#pricing" class="btn-nav">TÉLÉCHARGER</a>
-    </div>
-  </nav>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-lines" aria-hidden="true"></div>
-    <div class="hero-glow"  aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="dot" aria-hidden="true"></span>
-        <span>Gestion de studio de tatouage</span>
-        <span class="dot" aria-hidden="true"></span>
-      </div>
-      <h1 class="hero-title">
-        <span class="line-wrap"><span class="line">GÉREZ VOTRE</span></span>
-        <span class="line-wrap accent-line"><span class="line">STUDIO.</span></span>
-        <span class="line-wrap"><span class="line">PAS VOS OUTILS.</span></span>
-      </h1>
-      <p class="hero-desc">
-        Clients, rendez-vous, stocks, contrats, finances.<br>
-        Tout au même endroit. Application desktop Windows,<br>
-        vos données chez vous.
-      </p>
-      <div class="hero-badges">
-        <span class="badge-pill">◈ Windows</span>
-        <span class="badge-pill">◈ Hors-ligne</span>
-        <span class="badge-pill">◈ Vos données vous appartiennent</span>
-      </div>
-      <div class="hero-ctas">
-        <a href="#pricing" class="btn-primary">CHOISIR MA FORMULE</a>
-        <a href="#features" class="btn-ghost">VOIR LES FONCTIONNALITÉS →</a>
-      </div>
-    </div>
-    <div class="hero-mockup" aria-hidden="true">
-      <div class="mockup-glow"></div>
-      <div class="mockup-window">
-        <div class="mockup-titlebar">
-          <span class="mockup-dot r"></span>
-          <span class="mockup-dot y"></span>
-          <span class="mockup-dot g"></span>
-          <span class="mockup-title">Plan'Ink — Studio Management</span>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── BACKDROP NOISE ─────────────────────────────────────────── -->
+    <div class="noise"></div>
+    <div class="grid-bg"></div>
+
+    <!-- ── NAV ────────────────────────────────────────────────────── -->
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="#" class="nav-logo">
+          <span class="logo-mark">◆</span>
+          <span class="logo-text">PLAN'INK</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Fonctions</a>
+          <a href="#pricing">Tarifs</a>
+          <a href="#faq">FAQ</a>
+          <a href="#pricing" class="nav-cta">Acheter →</a>
         </div>
-        <div class="mockup-body">
-          <div class="mockup-sidebar">
-            <div class="mockup-logo-small">PLAN'INK</div>
-            <div class="mockup-nav-item active">◈ Dashboard</div>
-            <div class="mockup-nav-item">◉ Clients</div>
-            <div class="mockup-nav-item">◷ Agenda</div>
-            <div class="mockup-nav-item">◫ Stocks</div>
-            <div class="mockup-nav-item">◪ Contrats</div>
-            <div class="mockup-nav-item">◬ Finances</div>
+      </div>
+    </nav>
+
+    <!-- ── HERO ───────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-tagline">
+          <span class="hero-tag-dot"></span>
+          Conçu pour les tatoueurs indépendants
+        </div>
+
+        <h1 class="hero-title">
+          Le logiciel<br />
+          de votre studio.<br />
+          <span class="hero-title-accent">Construit avec encre.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Plan'Ink réunit clients, agenda, contrats de consentement, traçabilité
+          produits et comptabilité dans une seule application desktop. Pensé par
+          et pour des tatoueurs.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#pricing" class="btn btn-primary">Commencer — 19€/mois</a>
+          <a href="#features" class="btn btn-ghost">Découvrir →</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">100%</div>
+            <div class="hero-meta-lbl">Hors-ligne</div>
           </div>
-          <div class="mockup-main">
-            <div class="mockup-page-title">DASHBOARD</div>
-            <div class="mockup-stats">
-              <div class="mockup-stat"><div class="ms-label">Clients</div><div class="ms-val">24</div></div>
-              <div class="mockup-stat"><div class="ms-label">RDV aujourd'hui</div><div class="ms-val">3</div></div>
-              <div class="mockup-stat"><div class="ms-label">CA ce mois</div><div class="ms-val accent">2 840 €</div></div>
-              <div class="mockup-stat"><div class="ms-label">Alertes stock</div><div class="ms-val red">2</div></div>
+          <div class="hero-meta-divider"></div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">RGPD</div>
+            <div class="hero-meta-lbl">Conforme</div>
+          </div>
+          <div class="hero-meta-divider"></div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">Windows</div>
+            <div class="hero-meta-lbl">Native</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MOCKUP APP ─────────────────────────────────────────────── -->
+    <section class="mockup-section">
+      <div class="container">
+        <div class="mockup-frame">
+          <div class="mockup-titlebar">
+            <div class="mockup-controls">
+              <span class="mockup-dot mockup-dot-red"></span>
+              <span class="mockup-dot mockup-dot-yellow"></span>
+              <span class="mockup-dot mockup-dot-green"></span>
             </div>
-            <div class="mockup-section-title">Prochains rendez-vous</div>
-            <div class="mockup-rdv">
-              <div class="mockup-rdv-date"><div class="mrd-day">26</div><div class="mrd-mon">AVR</div></div>
-              <div class="mockup-rdv-info"><div class="mri-title">Dragon dos complet</div><div class="mri-sub">Laure Martin · 10:00 · 180min</div></div>
-              <span class="mockup-badge green">CONFIRMÉ</span>
+            <div class="mockup-title">Plan'Ink — Studio Management</div>
+          </div>
+          <div class="mockup-content">
+            <aside class="mockup-sidebar">
+              <div class="mockup-brand">
+                <div class="mockup-brand-mark">◆</div>
+                <div>
+                  <div class="mockup-brand-title">ATYP'INK</div>
+                  <div class="mockup-brand-sub">Studio Management</div>
+                </div>
+              </div>
+              <ul class="mockup-nav">
+                <li class="active">◇ Dashboard</li>
+                <li>○ Clients</li>
+                <li>◐ Agenda</li>
+                <li>▤ Stocks</li>
+                <li>▦ Contrats</li>
+                <li>△ Finances</li>
+              </ul>
+              <div class="mockup-user">
+                <div class="mockup-avatar">TK</div>
+                <div>
+                  <div class="mockup-user-name">The Artist</div>
+                  <div class="mockup-user-status">● En ligne</div>
+                </div>
+              </div>
+            </aside>
+
+            <main class="mockup-main">
+              <header class="mockup-header">
+                <h2>DASHBOARD</h2>
+                <p>BIENVENUE — JEUDI 30 AVRIL 2026</p>
+              </header>
+
+              <div class="mockup-stats">
+                <div class="mockup-stat">
+                  <div class="mockup-stat-lbl">CLIENTS</div>
+                  <div class="mockup-stat-num">3</div>
+                  <div class="mockup-stat-foot">total enregistrés</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-lbl">RDV AUJOURD'HUI</div>
+                  <div class="mockup-stat-num">1</div>
+                  <div class="mockup-stat-foot">séance planifiée</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-lbl">CA CE MOIS</div>
+                  <div class="mockup-stat-num accent">430 €</div>
+                  <div class="mockup-stat-foot">recettes encaissées</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-lbl">ALERTES STOCK</div>
+                  <div class="mockup-stat-num warn">2</div>
+                  <div class="mockup-stat-foot">produits à commander</div>
+                </div>
+              </div>
+
+              <div class="mockup-grid">
+                <div class="mockup-panel">
+                  <div class="mockup-panel-title">PROCHAIN RENDEZ-VOUS</div>
+                  <div class="mockup-rdv">
+                    <div class="mockup-rdv-date">
+                      <div class="mockup-rdv-day">29</div>
+                      <div class="mockup-rdv-mon">AVR.</div>
+                    </div>
+                    <div class="mockup-rdv-info">
+                      <div class="mockup-rdv-title">Rose minimaliste</div>
+                      <div class="mockup-rdv-meta">
+                        Sophie Leclerc · 11:00 · 60min
+                      </div>
+                    </div>
+                    <div class="mockup-rdv-badge">EN ATTENTE</div>
+                  </div>
+                </div>
+
+                <div class="mockup-panel">
+                  <div class="mockup-panel-title">ALERTES STOCK</div>
+                  <div class="mockup-stock">
+                    <div class="mockup-stock-head">
+                      <span>Encre Rouge Dynamic</span>
+                      <span class="mockup-stock-qty">3 flacons</span>
+                    </div>
+                    <div class="mockup-stock-bar">
+                      <div style="width: 75%"></div>
+                    </div>
+                  </div>
+                  <div class="mockup-stock">
+                    <div class="mockup-stock-head">
+                      <span>Gants Nitrile M</span>
+                      <span class="mockup-stock-qty">2 boîtes</span>
+                    </div>
+                    <div class="mockup-stock-bar">
+                      <div style="width: 67%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ───────────────────────────────────────────────── -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">— FONCTIONS</div>
+          <h2 class="section-title">
+            Tout ce dont vous avez besoin.<br />Rien de plus.
+          </h2>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature-num">01</div>
+            <h3>Clients & RGPD</h3>
+            <p>
+              Fiches clients complètes avec allergies, antécédents médicaux,
+              historique des séances. Anonymisation conforme à l'article 17 RGPD
+              en un clic — sans perdre vos statistiques.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-num">02</div>
+            <h3>Agenda intelligent</h3>
+            <p>
+              Vue mensuelle complète, détection automatique des chevauchements,
+              saisie de recettes déclenchée à la fin du RDV. Notifications
+              desktop pour vos rappels J-1.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-num">03</div>
+            <h3>Contrats de consentement</h3>
+            <p>
+              Génération PDF automatique avec votre logo, conditions
+              financières, traçabilité des aiguilles et encres par numéro de
+              lot. Édition complète, archivage permanent.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-num">04</div>
+            <h3>Traçabilité réglementaire</h3>
+            <p>
+              Inventaire produits avec seuils d'alerte, historique des
+              mouvements de stock avec motif, rattachement automatique aux
+              contrats clients. Conforme à la réglementation en vigueur.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-num">05</div>
+            <h3>Comptabilité simplifiée</h3>
+            <p>
+              Recettes et dépenses, statistiques annuelles, tarif moyen par
+              séance, export PDF mensuel et annuel pour votre comptable. CA,
+              charges, net. Tout est là.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-num">06</div>
+            <h3>100% hors-ligne</h3>
+            <p>
+              Vos données ne quittent jamais votre ordinateur. Stockage local
+              chiffré, backups automatiques, pas de cloud, pas de serveur tiers.
+              Vous gardez le contrôle.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRICING ────────────────────────────────────────────────── -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">— TARIFS</div>
+          <h2 class="section-title">Un seul plan.<br />Tout inclus.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-card-head">
+              <div class="price-card-name">Mensuel</div>
+              <div class="price-card-flex">Flexible</div>
             </div>
-            <div class="mockup-rdv">
-              <div class="mockup-rdv-date"><div class="mrd-day">27</div><div class="mrd-mon">AVR</div></div>
-              <div class="mockup-rdv-info"><div class="mri-title">Mandala avant-bras</div><div class="mri-sub">Marc Dupont · 14:00 · 90min</div></div>
-              <span class="mockup-badge green">CONFIRMÉ</span>
+            <div class="price-card-price">
+              <span class="price-amount">19</span>
+              <span class="price-currency">€</span>
+              <span class="price-period">/ mois</span>
             </div>
-            <div class="mockup-rdv">
-              <div class="mockup-rdv-date"><div class="mrd-day">28</div><div class="mrd-mon">AVR</div></div>
-              <div class="mockup-rdv-info"><div class="mri-title">Rose minimaliste</div><div class="mri-sub">Sophie Leclerc · 11:00 · 60min</div></div>
-              <span class="mockup-badge yellow">EN ATTENTE</span>
+            <p class="price-card-desc">
+              Idéal pour démarrer ou tester sans engagement. Résiliez à tout
+              moment.
+            </p>
+            <ul class="price-card-feats">
+              <li>Toutes les fonctionnalités</li>
+              <li>Mises à jour automatiques</li>
+              <li>1 poste de travail</li>
+              <li>Support par email</li>
+            </ul>
+            <a
+              href="https://planink.lemonsqueezy.com/buy/1592038"
+              class="btn btn-ghost btn-block"
+              >Choisir mensuel</a
+            >
+          </div>
+
+          <div class="price-card price-card-highlight">
+            <div class="price-card-badge">−17%</div>
+            <div class="price-card-head">
+              <div class="price-card-name">Annuel</div>
+              <div class="price-card-flex">Recommandé</div>
             </div>
+            <div class="price-card-price">
+              <span class="price-amount">190</span>
+              <span class="price-currency">€</span>
+              <span class="price-period">/ an</span>
+            </div>
+            <p class="price-card-desc">
+              Soit <strong>15,83 € par mois</strong>. Économisez 38 € par an et
+              soutenez le développement.
+            </p>
+            <ul class="price-card-feats">
+              <li>Toutes les fonctionnalités</li>
+              <li>Mises à jour automatiques</li>
+              <li>1 poste de travail</li>
+              <li>Support prioritaire par email</li>
+              <li><strong>2 mois offerts</strong></li>
+            </ul>
+            <a
+              href="https://planink.lemonsqueezy.com/buy/1592040"
+              class="btn btn-primary btn-block"
+              >Choisir annuel</a
+            >
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">POURQUOI PLAN'INK</div>
-        <h2>CONÇU PAR ET POUR<br>DES <em>ARTISTES.</em></h2>
-        <p>Pas un CRM générique repeint. Un outil pensé pour la réalité quotidienne d'un studio de tatouage.</p>
+        <div class="pricing-foot">
+          <span>Paiement sécurisé via LemonSqueezy</span>
+          <span class="dot">·</span>
+          <span>Aucun frais caché</span>
+          <span class="dot">·</span>
+          <span>TVA incluse pour l'UE</span>
+        </div>
       </div>
-      <div class="features-grid">
-        <div class="feature-card" data-reveal><span class="feature-icon">◫</span><h3>Hors-ligne d'abord</h3><p>Vos données restent sur votre machine. Pas de cloud imposé, pas de dépendance réseau. L'app fonctionne même sans internet.</p></div>
-        <div class="feature-card" data-reveal><span class="feature-icon">◪</span><h3>Contrats conformes</h3><p>Formulaires de consentement éclairé avec traçabilité des numéros de lot matériel. Impression PDF en un clic.</p></div>
-        <div class="feature-card" data-reveal><span class="feature-icon">◉</span><h3>Clients enrichis</h3><p>Allergies, historique de séances, notes libres. La fiche client qui anticipe vos besoins avant même que vous les formuliez.</p></div>
-        <div class="feature-card" data-reveal><span class="feature-icon">◷</span><h3>Agenda visuel</h3><p>Vue mensuelle avec chips colorées par statut. Nouveau rendez-vous en trois clics. Détail du jour en un clic.</p></div>
-        <div class="feature-card" data-reveal><span class="feature-icon">◬</span><h3>Finances intégrées</h3><p>CA mensuel, dépenses, résultat net. La saisie de recette se déclenche automatiquement à la fin d'une séance.</p></div>
-        <div class="feature-card" data-reveal><span class="feature-icon">◈</span><h3>Interface pro</h3><p>Dark mode permanent, typographie soignée. Une application qui ressemble à votre métier, pas à un tableur.</p></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">TARIFS</div>
-        <h2>SIMPLE. DIRECT.<br><em>SANS SURPRISE.</em></h2>
-        <p>Deux formules. Pas de version gratuite bridée.<br>On est quali, on assume.</p>
-      </div>
-      <div class="billing-toggle-wrap">
-        <span class="billing-label active" id="lbl-monthly">MENSUEL</span>
-        <button class="billing-toggle" id="billing-toggle" aria-label="Basculer entre facturation mensuelle et annuelle" aria-pressed="false"></button>
-        <span class="billing-label" id="lbl-annual">ANNUEL</span>
-        <span class="save-badge" id="save-badge">ÉCONOMISEZ JUSQU'À 2 MOIS</span>
-      </div>
-      <div class="pricing-cards">
-        <div class="pricing-card" id="card-solo">
-          <div class="plan-header">
-            <div class="plan-name">SINGLE ARTIST</div>
-            <div class="plan-tagline">Un artiste · Un studio</div>
-          </div>
-          <div class="plan-price-wrap">
-            <div class="plan-price"><sup>€</sup><span id="price-solo">19</span><em>/mois</em></div>
-            <div class="plan-annual-note" id="annual-note-solo">&nbsp;</div>
-          </div>
-          <div class="plan-divider"></div>
-          <ul class="plan-features">
-            <li>Gestion clients illimitée</li>
-            <li>Agenda & rendez-vous</li>
-            <li>Stocks & alertes de seuil</li>
-            <li>Contrats de consentement PDF</li>
-            <li>Traçabilité numéros de lot</li>
-            <li>Suivi financier mensuel & annuel</li>
-            <li>Paramètres studio & logo</li>
-            <li>Données stockées localement</li>
-          </ul>
-          <a href="#" class="btn-plan ghost">COMMENCER →</a>
-          <div class="plan-note">Sans engagement · Résiliable à tout moment</div>
+    <!-- ── FAQ ────────────────────────────────────────────────────── -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">— QUESTIONS</div>
+          <h2 class="section-title">Vous vous demandez peut-être...</h2>
         </div>
-        <div class="pricing-card featured" id="card-studio">
-          <div class="plan-header">
-            <div class="plan-name">STUDIO</div>
-            <div class="plan-tagline">Multi-artistes · Collaboration</div>
-          </div>
-          <div class="plan-price-wrap">
-            <div class="plan-price"><sup>€</sup><span id="price-studio">39</span><em>/mois</em></div>
-            <div class="plan-annual-note" id="annual-note-studio">&nbsp;</div>
-          </div>
-          <div class="plan-divider"></div>
-          <ul class="plan-features">
-            <li>Tout Single Artist inclus</li>
-            <li>Jusqu'à 5 artistes</li>
-            <li>Agenda partagé multi-artistes</li>
-            <li>Stocks mutualisés</li>
-            <li>Finances consolidées par artiste</li>
-            <li>Export CSV comptabilité</li>
-            <li>Support prioritaire</li>
-            <li>Mises à jour en avant-première</li>
-          </ul>
-          <a href="#" class="btn-plan solid">COMMENCER →</a>
-          <div class="plan-note">Sans engagement · Résiliable à tout moment</div>
-        </div>
-      </div>
-      <p class="pricing-guarantee">
-        <span class="dot" aria-hidden="true"></span>
-        Sans engagement &nbsp;·&nbsp; Résiliable à tout moment &nbsp;·&nbsp; Paiement sécurisé Stripe
-        <span class="dot" aria-hidden="true"></span>
-      </p>
-    </div>
-  </section>
 
-  <!-- COMPARE -->
-  <section class="compare-section" id="compare">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">COMPARATIF</div>
-        <h2>CE QUI EST<br><em>INCLUS.</em></h2>
-      </div>
-      <div class="compare-table-wrap">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th class="col-feature">Fonctionnalité</th>
-              <th class="col-plan">Single Artist</th>
-              <th class="col-plan featured">Studio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Clients illimités</td>               <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Agenda & rendez-vous</td>            <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Gestion des stocks</td>              <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Contrats PDF + traçabilité lots</td> <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Suivi financier mensuel</td>         <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Paramètres studio & logo</td>        <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Données 100% locales</td>            <td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr class="row-divider"><td colspan="3"></td></tr>
-            <tr><td>Nombre d'artistes</td>               <td class="val-muted">1</td>                         <td class="val-accent">Jusqu'à 5</td></tr>
-            <tr><td>Agenda partagé</td>                  <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
-            <tr><td>Finances consolidées</td>            <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
-            <tr><td>Export CSV comptabilité</td>         <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
-            <tr><td>Support prioritaire</td>             <td><span class="dash">—</span></td>                 <td><span class="check">✓</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>
+              <span>Mes données sont-elles stockées dans le cloud ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Non. Plan'Ink est une application desktop : toutes vos données
+              clients, RDV, contrats et finances sont stockées localement sur
+              votre ordinateur, chiffrées et sauvegardées automatiquement. Seule
+              la vérification de votre licence se fait en ligne, une fois par
+              jour.
+            </p>
+          </details>
 
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">FAQ</div>
-        <h2>QUESTIONS<br><em>FRÉQUENTES.</em></h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Mes données sont-elles en sécurité ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Oui. Plan'Ink est une application desktop : toutes vos données (clients, RDV, finances) sont stockées localement sur votre machine dans un fichier JSON. Rien n'est envoyé sur nos serveurs. Vous restez souverain de vos données.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">L'app fonctionne-t-elle sans internet ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Complètement. L'application est hors-ligne par défaut. La connexion internet n'est requise qu'une fois par jour pour valider votre licence en arrière-plan. Si vous êtes hors-ligne, la validation est mise en cache 24h.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Puis-je changer de formule ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Oui, à tout moment depuis votre espace client. En cas de passage de Studio à Single Artist, votre prochain cycle de facturation applique le nouveau tarif. Aucun frais de changement.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Comment fonctionne la résiliation ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Résiliation en un clic depuis votre espace client. Vos données restent sur votre machine — elles ne sont jamais supprimées par nous. L'accès aux mises à jour s'arrête à la fin de la période payée.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Sur quels systèmes fonctionne Plan'Ink ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Actuellement Windows 10 et Windows 11 (64-bit). Les versions macOS et Linux sont prévues dans la roadmap 2025.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Les contrats PDF sont-ils conformes à la réglementation ?<em class="faq-icon" aria-hidden="true">+</em></button>
-          <div class="faq-a" role="region"><p>Les modèles incluent les clauses de consentement éclairé, les déclarations médicales, la traçabilité des numéros de lot (aiguilles, encres), et les soins post-tatouage — rédigés en tenant compte du cadre réglementaire français. Consultez votre ordre professionnel pour toute validation juridique.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <details class="faq-item">
+            <summary>
+              <span>Que se passe-t-il si je n'ai pas internet ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Plan'Ink fonctionne entièrement hors-ligne. La vérification de
+              licence est mise en cache pendant 24 heures, puis tolérée pendant
+              7 jours sans connexion. Vous pouvez travailler sans interruption
+              en cas de problème de réseau.
+            </p>
+          </details>
 
-  <!-- CTA FINAL -->
-  <section class="cta-final">
-    <div class="container">
-      <div class="cta-content">
-        <div class="section-eyebrow">PRÊT À COMMENCER ?</div>
-        <h2>VOTRE STUDIO<br>MÉRITE MIEUX<br>QU'UN <em>TABLEUR.</em></h2>
-        <a href="#pricing" class="btn-primary large">CHOISIR MA FORMULE</a>
-      </div>
-    </div>
-  </section>
+          <details class="faq-item">
+            <summary>
+              <span>Puis-je l'utiliser sur plusieurs ordinateurs ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Une licence couvre 1 poste de travail. Si vous travaillez sur
+              plusieurs machines, contactez-nous — nous pouvons étendre votre
+              licence sur demande.
+            </p>
+          </details>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
+          <details class="faq-item">
+            <summary>
+              <span>Puis-je résilier à tout moment ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Oui. Le plan mensuel n'a aucun engagement. Vous gardez l'accès
+              jusqu'à la fin de la période payée. Vos données restent sur votre
+              ordinateur même après résiliation.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Plan'Ink est-il conforme RGPD ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Oui. Vos données ne sont jamais transmises à des tiers. La
+              fonction d'anonymisation respecte le droit à l'effacement (article
+              17). Les contrats de consentement éclairé sont générés selon les
+              obligations réglementaires applicables aux studios de tatouage.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Sur quels systèmes Plan'Ink fonctionne-t-il ?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <p>
+              Pour le moment, Plan'Ink est disponible sur Windows 10 et 11. Les
+              versions macOS et Linux sont prévues dans une prochaine mise à
+              jour.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ──────────────────────────────────────────────── -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="final-cta-title">
+          Prêt à reprendre<br />
+          le contrôle de votre studio ?
+        </h2>
+        <p class="final-cta-sub">
+          Rejoignez les tatoueurs qui ont arrêté Excel et les post-its.
+        </p>
+        <a href="#pricing" class="btn btn-primary btn-large"
+          >Commencer maintenant →</a
+        >
+      </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="container footer-inner">
         <div class="footer-brand">
-          <div class="logo">
-            <span class="logo-hex">⬡</span>
-            <div>
-              <div class="logo-title">PLAN'INK</div>
-              <div class="logo-sub">STUDIO MANAGEMENT</div>
-            </div>
-          </div>
-          <p class="footer-desc">Application desktop de gestion pour studios de tatouage. Fait avec ◈ en Normandie.</p>
+          <div class="footer-logo">◆ PLAN'INK</div>
+          <div class="footer-tagline">Tattoo Studio Manager</div>
         </div>
         <div class="footer-links">
-          <div class="footer-col">
-            <div class="footer-col-title">PRODUIT</div>
-            <a href="#features">Fonctionnalités</a>
-            <a href="#pricing">Tarifs</a>
-            <a href="#compare">Comparatif</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">LÉGAL</div>
-            <a href="#">CGV</a>
-            <a href="#">Confidentialité</a>
-            <a href="#">Mentions légales</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">CONTACT</div>
-            <a href="#">Support</a>
-            <a href="mailto:contact@planink.fr">contact@planink.fr</a>
-          </div>
+          <a href="#features">Fonctions</a>
+          <a href="#pricing">Tarifs</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:ceo@planink.fr">Contact</a>
+        </div>
+        <div class="footer-legal">
+          <span>© 2026 Plan'Ink</span>
+          <span class="dot">·</span>
+          <a href="#">Mentions légales</a>
+          <span class="dot">·</span>
+          <a href="#">CGV</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2025 Plan'Ink. Tous droits réservés.</span>
-        <span>Paiements sécurisés par Stripe</span>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="script.js"></script>
-</body>
+    <script>
+      // Fermeture exclusive des FAQ — comportement accordion
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (item.open) {
+            document.querySelectorAll(".faq-item").forEach((other) => {
+              if (other !== item) other.removeAttribute("open");
+            });
+          }
+        });
+      });
+
+      // Smooth scroll pour les ancres
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
